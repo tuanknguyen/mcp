@@ -1,13 +1,16 @@
 # Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 #
-# Licensed under the Apache License, Version 2.0 (the "License"). You may not use this file except in compliance
-# with the License. A copy of the License is located at
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
 #
-#    http://www.apache.org/licenses/LICENSE-2.0
+#     http://www.apache.org/licenses/LICENSE-2.0
 #
-# or in the 'license' file accompanying this file. This file is distributed on an 'AS IS' BASIS, WITHOUT WARRANTIES
-# OR CONDITIONS OF ANY KIND, express or implied. See the License for the specific language governing permissions
-# and limitations under the License.
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 
 """Kubernetes client cache for the EKS MCP Server."""
 
@@ -52,24 +55,17 @@ class K8sClientCache:
         # Client cache with TTL to handle token expiration
         self._client_cache = TTLCache(maxsize=100, ttl=TOKEN_TTL)
 
-        # Clients for credential retrieval
-        self._eks_client = None
-        self._sts_client = None
+        # Flag to track if STS event handlers have been registered
+        self._sts_event_handlers_registered = False
 
         self._initialized = True
 
-    def _get_eks_client(self):
-        """Get or create the EKS client."""
-        if self._eks_client is None:
-            self._eks_client = AwsHelper.create_boto3_client('eks')
-        return self._eks_client
-
     def _get_sts_client(self):
-        """Get or create the STS client with event handlers registered."""
-        if self._sts_client is None:
-            sts_client = AwsHelper.create_boto3_client('sts')
+        """Get the STS client with event handlers registered."""
+        sts_client = AwsHelper.create_boto3_client('sts')
 
-            # Register STS event handlers
+        # Register STS event handlers only once
+        if not self._sts_event_handlers_registered:
             sts_client.meta.events.register(
                 'provide-client-params.sts.GetCallerIdentity',
                 self._retrieve_k8s_aws_id,
@@ -78,10 +74,9 @@ class K8sClientCache:
                 'before-sign.sts.GetCallerIdentity',
                 self._inject_k8s_aws_id_header,
             )
+            self._sts_event_handlers_registered = True
 
-            self._sts_client = sts_client
-
-        return self._sts_client
+        return sts_client
 
     def _retrieve_k8s_aws_id(self, params, context, **kwargs):
         """Retrieve the Kubernetes AWS ID from parameters."""
@@ -106,7 +101,7 @@ class K8sClientCache:
             ValueError: If the cluster credentials are invalid
             Exception: If there's an error getting the cluster credentials
         """
-        eks_client = self._get_eks_client()
+        eks_client = AwsHelper.create_boto3_client('eks')
         sts_client = self._get_sts_client()
 
         # Get cluster details

@@ -1,17 +1,22 @@
 # Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 #
-# Licensed under the Apache License, Version 2.0 (the "License"). You may not use this file except in compliance
-# with the License. A copy of the License is located at
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
 #
-#    http://www.apache.org/licenses/LICENSE-2.0
+#     http://www.apache.org/licenses/LICENSE-2.0
 #
-# or in the 'license' file accompanying this file. This file is distributed on an 'AS IS' BASIS, WITHOUT WARRANTIES
-# OR CONDITIONS OF ANY KIND, express or implied. See the License for the specific language governing permissions
-# and limitations under the License.
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 
 """awslabs valkey MCP Server implementation."""
 
+import argparse
 from awslabs.valkey_mcp_server.common.server import mcp
+from awslabs.valkey_mcp_server.context import Context
 from awslabs.valkey_mcp_server.tools import (
     bitmap,  # noqa: F401
     hash,  # noqa: F401
@@ -53,6 +58,18 @@ class ValkeyMCPServer:
 
 def main():
     """Run the MCP server with CLI argument support."""
+    parser = argparse.ArgumentParser(
+        description='An AWS Labs Model Context Protocol (MCP) server for interacting with Valkey'
+    )
+    parser.add_argument(
+        '--readonly',
+        action=argparse.BooleanOptionalAction,
+        help='Prevents the MCP server from performing mutating operations',
+    )
+
+    args = parser.parse_args()
+    Context.initialize(args.readonly)
+
     logger.info('Amazon ElastiCache/MemoryDB Valkey MCP Server Started...')
 
     server = ValkeyMCPServer()

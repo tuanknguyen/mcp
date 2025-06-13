@@ -1,7 +1,22 @@
+# Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 """Cache operations for Memcached MCP Server."""
 
 from awslabs.memcached_mcp_server.common.connection import MemcachedConnectionManager
 from awslabs.memcached_mcp_server.common.server import mcp
+from awslabs.memcached_mcp_server.context import Context
 from pymemcache.exceptions import MemcacheError
 from typing import Any, Dict, List, Optional
 
@@ -92,6 +107,9 @@ async def cache_set(key: str, value: Any, expire: Optional[int] = None) -> str:
     Returns:
         Success message or error message
     """
+    if Context.readonly_mode():
+        return 'Operation not permitted: Server is in readonly mode'
+
     try:
         client = MemcachedConnectionManager.get_connection()
         client.set(key, value, expire=expire)
@@ -114,6 +132,9 @@ async def cache_cas(key: str, value: Any, cas: int, expire: Optional[int] = None
     Returns:
         Success message or error message
     """
+    if Context.readonly_mode():
+        return 'Operation not permitted: Server is in readonly mode'
+
     try:
         client = MemcachedConnectionManager.get_connection()
         if client.cas(key, value, cas, expire=expire):
@@ -135,6 +156,9 @@ async def cache_set_many(mapping: Dict[str, Any], expire: Optional[int] = None) 
     Returns:
         Success message or error message
     """
+    if Context.readonly_mode():
+        return 'Operation not permitted: Server is in readonly mode'
+
     try:
         client = MemcachedConnectionManager.get_connection()
         failed = client.set_many(mapping, expire=expire)
@@ -172,6 +196,9 @@ async def cache_add(key: str, value: Any, expire: Optional[int] = None) -> str:
     Returns:
         Success message or error message
     """
+    if Context.readonly_mode():
+        return 'Operation not permitted: Server is in readonly mode'
+
     try:
         client = MemcachedConnectionManager.get_connection()
         if client.add(key, value, expire=expire):
@@ -194,6 +221,9 @@ async def cache_replace(key: str, value: Any, expire: Optional[int] = None) -> s
     Returns:
         Success message or error message
     """
+    if Context.readonly_mode():
+        return 'Operation not permitted: Server is in readonly mode'
+
     try:
         client = MemcachedConnectionManager.get_connection()
         if client.replace(key, value, expire=expire):
@@ -215,6 +245,9 @@ async def cache_append(key: str, value: str) -> str:
     Returns:
         Success message or error message
     """
+    if Context.readonly_mode():
+        return 'Operation not permitted: Server is in readonly mode'
+
     try:
         client = MemcachedConnectionManager.get_connection()
         if client.append(key, value):
@@ -235,6 +268,9 @@ async def cache_prepend(key: str, value: str) -> str:
     Returns:
         Success message or error message
     """
+    if Context.readonly_mode():
+        return 'Operation not permitted: Server is in readonly mode'
+
     try:
         client = MemcachedConnectionManager.get_connection()
         if client.prepend(key, value):
@@ -254,6 +290,9 @@ async def cache_delete(key: str) -> str:
     Returns:
         Success message or error message
     """
+    if Context.readonly_mode():
+        return 'Operation not permitted: Server is in readonly mode'
+
     try:
         client = MemcachedConnectionManager.get_connection()
         if client.delete(key):
@@ -273,6 +312,9 @@ async def cache_delete_many(keys: List[str]) -> str:
     Returns:
         Success message or error message
     """
+    if Context.readonly_mode():
+        return 'Operation not permitted: Server is in readonly mode'
+
     try:
         client = MemcachedConnectionManager.get_connection()
         failed = client.delete_many(keys)
@@ -307,6 +349,9 @@ async def cache_incr(key: str, value: int = 1) -> str:
     Returns:
         New value or error message
     """
+    if Context.readonly_mode():
+        return 'Operation not permitted: Server is in readonly mode'
+
     try:
         client = MemcachedConnectionManager.get_connection()
         result = client.incr(key, value)
@@ -328,6 +373,9 @@ async def cache_decr(key: str, value: int = 1) -> str:
     Returns:
         New value or error message
     """
+    if Context.readonly_mode():
+        return 'Operation not permitted: Server is in readonly mode'
+
     try:
         client = MemcachedConnectionManager.get_connection()
         result = client.decr(key, value)
@@ -349,6 +397,9 @@ async def cache_touch(key: str, expire: int) -> str:
     Returns:
         Success message or error message
     """
+    if Context.readonly_mode():
+        return 'Operation not permitted: Server is in readonly mode'
+
     try:
         client = MemcachedConnectionManager.get_connection()
         if client.touch(key, expire):
@@ -386,6 +437,9 @@ async def cache_flush_all(delay: int = 0) -> str:
     Returns:
         Success message or error message
     """
+    if Context.readonly_mode():
+        return 'Operation not permitted: Server is in readonly mode'
+
     try:
         client = MemcachedConnectionManager.get_connection()
         client.flush_all(delay=delay)

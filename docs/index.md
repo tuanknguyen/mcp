@@ -64,6 +64,22 @@ The Amazon Kendra Index MCP Server enables AI assistants to retrieve additional 
 
 [Learn more about the Amazon Kendra Index MCP Server](servers/kendra-index-mcp-server.md)
 
+### Amazon Q index MCP Server
+
+The Amazon Q index MCP Server enables AI assistants to search through enterprise customers' Q index and access relevant content across their data sources using specific authentication and authorization flows.
+
+**Features:**
+
+- Authentication Tools
+-- AuthorizeQIndex: Generates OIDC authorization URLs for Q index authentication
+-- CreateTokenWithIAM: Creates authentication tokens using authorization codes
+-- AssumeRoleWithIdentityContext: Assumes IAM roles using identity context from tokens
+
+- Search Tools
+-- SearchRelevantContent: Searches and retrieves content from Q Business applications
+
+[Learn more about the Amazon Q index MCP Server](servers/amazon-qindex-mcp-server.md)
+
 ### Amazon Bedrock Knowledge Base Retrieval MCP Server
 
 The Bedrock Knowledge Base Retrieval MCP Server enables AI assistants to retrieve information from Amazon Bedrock Knowledge Bases.
@@ -159,7 +175,7 @@ The Frontend MCP Server provides specialized tools for prototyping web applicati
 
 [Learn more about the Frontend MCP Server](servers/frontend-mcp-server.md)
 
-### Amazon ElastiCache for Valkey MCP Server
+### Amazon ElastiCache/MemoryDB for Valkey MCP Server
 
 The Amazon ElastiCache/MemoryDB Valkey MCP Server provides a natural language interface to interact with Valkey datastores, enabling AI assistants to work with various data structures and perform complex data operations.
 
@@ -275,6 +291,20 @@ Use this MCP server to first discover available logs groups, then run queries on
 
 [Learn more about the Amazon CloudWatch Logs MCP Server](servers/cloudwatch-logs-mcp-server.md)
 
+### AWS Managed Prometheus MCP Server
+
+The Prometheus MCP Server provides a robust interface for interacting with AWS Managed Prometheus.
+
+**Features:**
+
+- Execute instant PromQL queries against AWS Managed Prometheus
+- Execute range queries with start time, end time, and step interval
+- List all available metrics in your Prometheus instance
+- Get server configuration information
+- AWS SigV4 authentication for secure access
+
+[Learn more about the AWS Managed Prometheus MCP Server](servers/prometheus-mcp-server.md)
+
 ### Amazon DynamoDB MCP Server
 
 A server for interacting with Amazon DynamoDB
@@ -285,6 +315,21 @@ A server for interacting with Amazon DynamoDB
 - Data Plane operations like put, get, update, query and scan.
 
 [Learn more about the Amazon DynamoDB MCP Server](servers/dynamodb-mcp-server.md)
+
+### Amazon ElastiCache MCP Server
+
+A server for managing and interacting with Amazon ElastiCache resources.
+
+**Features:**
+
+- Replication Group Operations (create, delete, modify, describe)
+- Cache Cluster Operations (create, delete, modify, describe)
+- Serverless Cache Operations (create, delete, modify, describe)
+- Jump Host Configuration for secure access
+- Service Updates and Engine Management
+- Comprehensive monitoring and event tracking
+
+[Learn more about the Amazon ElastiCache MCP Server](servers/elasticache-mcp-server.md)
 
 ### Amazon DocumentDB MCP Server
 
@@ -338,6 +383,58 @@ A server for interacting with Amazon Neptune graph database.
 - Get the schema of the graph
 
 [Learn more about the Amazon Neptune MCP Server](servers/amazon-neptune-mcp-server.md)
+
+### AWS Bedrock Data Automation MCP Server
+
+A Model Context Protocol (MCP) server for Amazon Bedrock Data Automation that enables AI assistants to analyze documents, images, videos, and audio files using Amazon Bedrock Data Automation projects.
+
+**Features:**
+
+- Project Management: List and get details about Bedrock Data Automation projects
+- Asset Analysis: Extract insights from unstructured content using Bedrock Data Automation
+- Support for Multiple Content Types: Process documents, images, videos, and audio files
+- Integration with Amazon S3: Seamlessly upload and download assets and results
+
+[Learn more about the AWS Bedrock Data Automation MCP Server](servers/aws-bedrock-data-automation-mcp-server.md)
+
+### Amazon Keyspaces (for Apache Cassandra) MCP Server
+
+An Amazon Keyspaces (for Apache Cassandra) MCP server enables AI assistants to interact with Amazon Keyspaces and Apache Cassandra.
+
+**Features:**
+- Explore keyspaces and tables.
+- Execute CQL SELECT queries against the configured database.
+- Get feedback and suggestions for improving query performance.
+- Use with Amazon Keyspaces, or with Apache Cassandra.
+
+[Learn more about the Amazon Keysapces MCP Server](servers/amazon-keyspaces-mcp-server.md)
+
+### Amazon Timestream for InfluxDB MCP Server
+A Model Context Protocol (MCP) server for Amazon Timestream for InfluxDB that enables AI assistants to help create, list, store, and query
+time-series data using InfluxDB.
+
+** Features **
+- Create, update, list, describe, and delete Timestream for InfluxDB database instances
+- Create, update, list, describe, and delete Timestream for InfluxDB database clusters
+- Manage DB parameter groups
+- Tag management for Timestream for InfluxDB resources
+- Write and query data using InfluxDB's APIs
+
+[Learn more about the Amazon Timestream for InfluxDB MCP Server](servers/timestream-for-influxdb-mcp-server.md)
+
+### AWS Cost Explorer MCP Server
+
+A server for interacting with AWS Cost Explorer to analyze AWS costs and usage data.
+
+**Features:**
+
+- Get detailed breakdowns of AWS costs by service, region, and other dimensions
+- Understand how costs are distributed across various services
+- Query historical cost data for specific time periods
+- Filter costs by various dimensions, tags, and cost categories
+- Ask natural language questions about AWS costs
+
+[Learn more about the AWS Cost Explorer MCP Server](servers/cost-explorer-mcp-server.md)
 
 ## Installation and Setup
 

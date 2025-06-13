@@ -3,6 +3,7 @@ repos:
     rev: v5.0.0
     hooks:
     -   id: check-added-large-files
+    -   id: check-case-conflict
     -   id: check-executables-have-shebangs
     -   id: check-illegal-windows-names
     -   id: check-json
@@ -25,6 +26,7 @@ repos:
           # Necessary so that non-standard tags do not throw failures.
           - '--unsafe'
     -   id: end-of-file-fixer
+    -   id: debug-statements
     -   id: destroyed-symlinks
     -   id: detect-private-key
     -   id: detect-aws-credentials
@@ -33,9 +35,9 @@ repos:
     -   id: pretty-format-json
     -   id: trailing-whitespace
 
-- repo: https://github.com/astral-sh/ruff-pre-commit
-  rev: v0.11.4
-  hooks:
+-   repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.11.4
+    hooks:
     - id: ruff
       args: [ --fix ]
     - id: ruff-format
@@ -45,3 +47,14 @@ repos:
     hooks:
     -   id: detect-secrets
         args: ['--baseline', '.secrets.baseline']
+
+-   repo: local
+    hooks:
+    -   id: check-license-header
+        name: check license header
+        pass_filenames: false
+        language: system
+        entry: npm
+        args: [
+            'exec', '--',
+            'github:viperproject/check-license-header#v1', 'check', '--config', './.github/workflows/check-license-header.json']

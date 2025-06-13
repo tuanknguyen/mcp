@@ -1,15 +1,18 @@
 # Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 #
-# Licensed under the Apache License, Version 2.0 (the "License"). You may not use this file except in compliance
-# with the License. A copy of the License is located at
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
 #
-#    http://www.apache.org/licenses/LICENSE-2.0
+#     http://www.apache.org/licenses/LICENSE-2.0
 #
-# or in the 'license' file accompanying this file. This file is distributed on an 'AS IS' BASIS, WITHOUT WARRANTIES
-# OR CONDITIONS OF ANY KIND, express or implied. See the License for the specific language governing permissions
-# and limitations under the License.
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 
-"""Knowledge Base Retrival handler for the EKS MCP Server."""
+"""Knowledge Base Retrieval handler for the EKS MCP Server."""
 
 import requests
 from loguru import logger
@@ -24,7 +27,7 @@ AWS_SERVICE = 'eks-mcpserver'
 
 
 class EKSKnowledgeBaseHandler:
-    """Handler for retriving troubleshooting guide from the EKS Knowledge Base.
+    """Handler for retrieving troubleshooting guide from the EKS Knowledge Base.
 
     This class provides tools for fetching instructions to troubleshoot issues from the EKS Hosted MCP service.
     """
