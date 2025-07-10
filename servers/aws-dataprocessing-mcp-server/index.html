@@ -1,0 +1,2564 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://awslabs.github.io/mcp/servers/aws-dataprocessing-mcp-server/">
+      
+      
+        <link rel="prev" href="../amazon-rekognition-mcp-server/">
+      
+      
+        <link rel="next" href="../aws-documentation-mcp-server/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>AWS Data Processing MCP Server - AWS MCP Servers</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        
+        <link rel="stylesheet" href="../../assets/external/fonts.googleapis.com/css.49ea35f2.css">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="dracula" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#amazon-data-processing-mcp-server" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="AWS MCP Servers" class="md-header__button md-logo" aria-label="AWS MCP Servers" data-md-component="logo">
+      
+  <img src="../../images/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AWS MCP Servers
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              AWS Data Processing MCP Server
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="dracula" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/awslabs/mcp" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    awslabs/mcp
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="AWS MCP Servers" class="md-nav__button md-logo" aria-label="AWS MCP Servers" data-md-component="logo">
+      
+  <img src="../../images/logo.png" alt="logo">
+
+    </a>
+    AWS MCP Servers
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/awslabs/mcp" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    awslabs/mcp
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    AWS MCP Servers
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            AWS MCP Servers
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../amazon-mq-mcp-server/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon MQ MCP Server
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../amazon-sns-sqs-mcp-server/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS SNS SQS MCP Server
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../core-mcp-server/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Core MCP Server
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bedrock-kb-retrieval-mcp-server/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon Bedrock Knowledge Base Retrieval MCP Server
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aws-bedrock-data-automation-mcp-server/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Bedrock Data Automation MCP Server
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cdk-mcp-server/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS CDK MCP Server
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aws-pricing-mcp-server/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Pricing MCP Server
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cost-explorer-mcp-server/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Cost Explorer MCP Server
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nova-canvas-mcp-server/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon Nova Canvas MCP Server
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../amazon-qindex-mcp-server/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon Q index MCP Server
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../amazon-rekognition-mcp-server/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon Rekognition MCP Server
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    AWS Data Processing MCP Server
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Data Processing MCP Server
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#key-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key features
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Key features">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aws-glue-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      AWS Glue Integration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#amazon-emr-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Amazon EMR Integration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#amazon-athena-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Amazon Athena Integration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisites
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setup
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#read-only-operations-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Read-Only Operations Policy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#write-operations-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Write Operations Policy
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quickstart" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quickstart
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configurations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configurations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configurations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#arguments" class="md-nav__link">
+    <span class="md-ellipsis">
+      Arguments
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Arguments">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#awslabsaws-dataprocessing-mcp-serverlatest-required" class="md-nav__link">
+    <span class="md-ellipsis">
+      awslabs.aws-dataprocessing-mcp-server@latest (required)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-allow-write-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      --allow-write (optional)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-allow-sensitive-data-access-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      --allow-sensitive-data-access (optional)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Environment variables
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Environment variables">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fastmcp_log_level-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      FASTMCP_LOG_LEVEL (optional)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws_profile-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      AWS_PROFILE (optional)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws_region-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      AWS_REGION (optional)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tools
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tools">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#glue-data-catalog-handler-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      Glue Data Catalog Handler Tools
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#glue-interactive-sessions-handler-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      Glue Interactive Sessions Handler Tools
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#glue-workflows-and-triggers-handler-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      Glue Workflows and Triggers Handler Tools
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#emr-cluster-handler-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      EMR Cluster Handler Tools
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#emr-instance-handler-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      EMR Instance Handler Tools
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#emr-steps-handler-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      EMR Steps Handler Tools
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#athena-query-handler-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      Athena Query Handler Tools
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#athena-data-catalog-handler-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      Athena Data Catalog Handler Tools
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#athena-workgroup-handler-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      Athena WorkGroup Handler Tools
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#glue-commons-handler-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      Glue Commons Handler Tools
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#glue-etl-handler-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      Glue ETL Handler Tools
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#glue-crawler-handler-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      Glue Crawler Handler Tools
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#version" class="md-nav__link">
+    <span class="md-ellipsis">
+      Version
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aws-documentation-mcp-server/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Documentation MCP Server
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iam-mcp-server/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS IAM MCP Server
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lambda-tool-mcp-server/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Lambda Tool MCP Server
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aws-diagram-mcp-server/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Diagram MCP Server
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../stepfunctions-tool-mcp-server/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Step Functions Tool MCP Server
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../terraform-mcp-server/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Terraform MCP Server
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../elasticache-mcp-server/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon ElastiCache MCP Server
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../valkey-mcp-server/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon ElastiCache/MemoryDB for Valkey MCP Server
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../memcached-mcp-server/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon ElastiCache for Memcached MCP Server
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../git-repo-research-mcp-server/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Git Repo Research MCP Server
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../openapi-mcp-server/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    OpenAPI MCP Server
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cfn-mcp-server/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    CloudFormation MCP Server
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aws-serverless-mcp-server/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Serverless MCP Server
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../finch-mcp-server/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Finch MCP Server
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../eks-mcp-server/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon EKS MCP Server
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ecs-mcp-server/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon ECS MCP Server
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aws-support-mcp-server/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Support MCP Server
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../prometheus-mcp-server/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS Managed Prometheus MCP Server
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cloudwatch-mcp-server/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon CloudWatch MCP Server
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cloudwatch-appsignals-mcp-server/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon CloudWatch Application Signals MCP Server
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../timestream-for-influxdb-mcp-server/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon Timestream for InfluxDB MCP Server
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../redshift-mcp-server/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amazon Redshift MCP Server
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aws-healthomics-mcp-server/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AWS HealthOmics MCP Server
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Samples
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Samples
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../samples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../samples/mcp-integration-with-kb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    MCP Integration with Amazon Bedrock Knowledge Bases
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#key-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key features
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Key features">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aws-glue-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      AWS Glue Integration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#amazon-emr-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Amazon EMR Integration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#amazon-athena-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Amazon Athena Integration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisites
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setup
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#read-only-operations-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Read-Only Operations Policy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#write-operations-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Write Operations Policy
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quickstart" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quickstart
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configurations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configurations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configurations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#arguments" class="md-nav__link">
+    <span class="md-ellipsis">
+      Arguments
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Arguments">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#awslabsaws-dataprocessing-mcp-serverlatest-required" class="md-nav__link">
+    <span class="md-ellipsis">
+      awslabs.aws-dataprocessing-mcp-server@latest (required)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-allow-write-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      --allow-write (optional)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-allow-sensitive-data-access-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      --allow-sensitive-data-access (optional)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Environment variables
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Environment variables">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fastmcp_log_level-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      FASTMCP_LOG_LEVEL (optional)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws_profile-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      AWS_PROFILE (optional)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws_region-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      AWS_REGION (optional)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tools
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tools">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#glue-data-catalog-handler-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      Glue Data Catalog Handler Tools
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#glue-interactive-sessions-handler-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      Glue Interactive Sessions Handler Tools
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#glue-workflows-and-triggers-handler-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      Glue Workflows and Triggers Handler Tools
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#emr-cluster-handler-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      EMR Cluster Handler Tools
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#emr-instance-handler-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      EMR Instance Handler Tools
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#emr-steps-handler-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      EMR Steps Handler Tools
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#athena-query-handler-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      Athena Query Handler Tools
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#athena-data-catalog-handler-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      Athena Data Catalog Handler Tools
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#athena-workgroup-handler-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      Athena WorkGroup Handler Tools
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#glue-commons-handler-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      Glue Commons Handler Tools
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#glue-etl-handler-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      Glue ETL Handler Tools
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#glue-crawler-handler-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      Glue Crawler Handler Tools
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#version" class="md-nav__link">
+    <span class="md-ellipsis">
+      Version
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="amazon-data-processing-mcp-server">Amazon Data Processing MCP Server</h1>
+<p>The AWS DataProcessing MCP server provides AI code assistants with comprehensive data processing tools and real-time pipeline visibility across AWS Glue and Amazon EMR-EC2. This integration equips large language models (LLMs) with essential data engineering capabilities and contextual awareness, enabling AI code assistants to streamline data processing workflows through intelligent guidance — from initial data discovery and cataloging through complex ETL pipeline orchestration and big data analytics optimization.</p>
+<p>Integrating the DataProcessing MCP server into AI code assistants transforms data engineering workflows across all phases, from simplifying data catalog management with automated schema discovery and data quality validation. Additionally, it streamlines ETL job creation with intelligent code generation and best practice recommendations. It accelerates big data processing through automated EMR cluster provisioning and workload optimization. Finally, it enhances troubleshooting through intelligent debugging tools and operational insights. All of this simplifies complex data operations through natural language interactions in AI code assistants.</p>
+<h2 id="key-features">Key features</h2>
+<h3 id="aws-glue-integration">AWS Glue Integration</h3>
+<ul>
+<li>Data Catalog Management: Enables users to explore, create, and manage databases, tables, and partitions through natural language requests, automatically translating them into appropriate AWS Glue Data Catalog operations.</li>
+<li>Interactive Sessions: Provides interactive development environment for Spark and Ray workloads, enabling data exploration, debugging, and iterative development through managed Jupyter-like sessions.</li>
+<li>Workflows and Triggers: Orchestrates complex ETL activities through visual workflows and automated triggers, supporting scheduled, conditional, and event-based execution patterns.</li>
+<li>Commons: Enables users to create and manage usage profiles, security configurations, catalog encryption settings and resource policies, which provide users with the ability to manage the configuration and encryption of several Glue resources like ETL jobs, catalogs, etc.</li>
+<li>ETL Job Orchestration: Provides the ability to create, monitor, and manage Glue ETL jobs with automatic script generation, job scheduling, and workflow coordination based on user-defined data transformation requirements.</li>
+<li>Crawler Management: Enables intelligent data discovery through automated crawler configuration, scheduling, and metadata extraction from various data sources.</li>
+</ul>
+<h3 id="amazon-emr-integration">Amazon EMR Integration</h3>
+<ul>
+<li>Cluster Management: Enables users to create, configure, monitor, and terminate EMR clusters with comprehensive control over instance types, applications, and configurations through natural language requests.</li>
+<li>Instance Management: Provides the ability to add, modify, and monitor instance fleets and instance groups within EMR clusters, supporting both on-demand and spot instances with auto-scaling capabilities.</li>
+<li>Step Execution: Orchestrates data processing workflows through EMR steps, allowing users to submit, monitor, and manage Hadoop, Spark, and other application jobs on running clusters.</li>
+<li>Security Configuration: Manages EMR security settings including encryption, authentication, and authorization policies to ensure secure data processing environments.</li>
+</ul>
+<h3 id="amazon-athena-integration">Amazon Athena Integration</h3>
+<ul>
+<li>Query Execution: Enables users to execute, monitor, and manage SQL queries with comprehensive control over query lifecycle, including starting queries, retrieving results, monitoring performance statistics, and canceling running queries through natural language requests.</li>
+<li>Named Query Management: Provides the ability to create, update, retrieve, and delete saved SQL queries, enabling users to build reusable query libraries with proper organization and team collaboration capabilities.</li>
+<li>Data Catalog Operations: Manages Athena data catalogs with support for multiple catalog types (LAMBDA, GLUE, HIVE, FEDERATED), enabling users to create, configure, and maintain data source connections for cross-platform querying.</li>
+<li>Database and Table Discovery: Facilitates data exploration through comprehensive database and table metadata retrieval, allowing users to discover available data sources, understand schema structures, and navigate data catalogs efficiently.</li>
+<li>Workgroup Administration: Orchestrates query execution environments through workgroup management, providing cost control, access management, and query result configuration with support for different user groups and organizational policies.</li>
+</ul>
+<h2 id="prerequisites">Prerequisites</h2>
+<ul>
+<li><a href="https://www.python.org/downloads/release/python-3100/">Install Python 3.10+</a></li>
+<li><a href="https://docs.astral.sh/uv/getting-started/installation/">Install the <code>uv</code> package manager</a></li>
+<li><a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html">Install and configure the AWS CLI with credentials</a></li>
+</ul>
+<h2 id="setup">Setup</h2>
+<p>Add these IAM policies to the IAM role or user that you use to manage your Glue, EMR-EC2 or Athena resources.</p>
+<h3 id="read-only-operations-policy">Read-Only Operations Policy</h3>
+<p>For read operations, the following permissions are required:</p>
+<div class="highlight"><pre><span></span><code>{
+  &quot;Version&quot;: &quot;2012-10-17&quot;,
+  &quot;Statement&quot;: [
+    {
+      &quot;Effect&quot;: &quot;Allow&quot;,
+      &quot;Action&quot;: [
+        &quot;glue:GetDatabase*&quot;,
+        &quot;glue:GetTable*&quot;,
+        &quot;glue:GetPartition*&quot;,
+        &quot;glue:GetCrawler*&quot;,
+        &quot;glue:GetConnection*&quot;,
+        &quot;glue:GetDatabases&quot;,
+        &quot;glue:GetTables&quot;,
+        &quot;glue:ListCrawlers&quot;,
+        &quot;glue:SearchTables&quot;,
+        &quot;glue:GetJobRun&quot;,
+        &quot;glue:GetJobRuns&quot;,
+        &quot;glue:GetJob&quot;,
+        &quot;glue:GetJobs&quot;,
+        &quot;glue:GetJobBookmark&quot;,
+        &quot;glue:GetUsageProfile&quot;,
+        &quot;glue:GetSecurityConfiguration&quot;,
+        &quot;glue:GetDataCatalogEncryptionSettings&quot;,
+        &quot;glue:GetResourcePolicy&quot;,
+        &quot;glue:GetSession&quot;,
+        &quot;glue:ListSessions&quot;,
+        &quot;glue:GetStatement&quot;,
+        &quot;glue:ListStatements&quot;,
+        &quot;glue:GetSession&quot;,
+        &quot;glue:ListSessions&quot;,
+        &quot;glue:GetStatement&quot;,
+        &quot;glue:ListStatements&quot;,
+        &quot;glue:GetWorkflow&quot;,
+        &quot;glue:ListWorkflows&quot;,
+        &quot;glue:GetTrigger&quot;,
+        &quot;glue:GetTriggers&quot;,
+        &quot;cloudwatch:GetMetricData&quot;,
+        &quot;logs:DescribeLogGroups&quot;,
+        &quot;logs:DescribeLogStreams&quot;,
+        &quot;emr:DescribeCluster&quot;,
+        &quot;emr:ListClusters&quot;,
+        &quot;emr:DescribeStep&quot;,
+        &quot;emr:ListSteps&quot;,
+        &quot;emr:ListInstances&quot;,
+        &quot;emr:GetManagedScalingPolicy&quot;,
+        &quot;emr:DescribeStudio&quot;,
+        &quot;emr:ListStudios&quot;,
+        &quot;emr:DescribeNotebookExecution&quot;,
+        &quot;emr:ListNotebookExecutions&quot;,
+        &quot;athena:BatchGetQueryExecution&quot;,
+        &quot;athena:GetQueryExecution&quot;,
+        &quot;athena:GetQueryResults&quot;,
+        &quot;athena:GetQueryRuntimeStatistics&quot;,
+        &quot;athena:ListQueryExecutions&quot;,
+        &quot;athena:BatchGetNamedQuery&quot;,
+        &quot;athena:GetNamedQuery&quot;,
+        &quot;athena:ListNamedQueries&quot;,
+        &quot;athena:GetDataCatalog&quot;,
+        &quot;athena:ListDataCatalogs&quot;,
+        &quot;athena:GetDatabase&quot;,
+        &quot;athena:GetTableMetadata&quot;,
+        &quot;athena:ListDatabases&quot;,
+        &quot;athena:ListTableMetadata&quot;,
+        &quot;athena:GetWorkGroup&quot;,
+        &quot;athena:ListWorkGroups&quot;
+        &quot;sts:GetCallerIdentity&quot;
+      ],
+      &quot;Resource&quot;: &quot;*&quot;
+    }
+  ]
+}
+</code></pre></div>
+<h3 id="write-operations-policy">Write Operations Policy</h3>
+<p>For write operations, we recommend the following IAM policies:</p>
+<ul>
+<li>AWSGlueServiceRole: Enables Glue service operations including job execution, crawler runs, and data catalog modifications</li>
+</ul>
+<p><strong>Important Security Note</strong>: Users should exercise caution when --allow-write and --allow-sensitive-data-access modes are enabled with these broad permissions, as this combination grants significant privileges to the MCP server. Only enable these flags when necessary and in trusted environments.</p>
+<p><strong>Resource Management Limitation</strong>: The DataProcessing MCP Server can only update or delete resources that were originally created through it. Resources created by other means cannot be modified or deleted using the DataProcessing MCP Server.</p>
+<h2 id="quickstart">Quickstart</h2>
+<p>This quickstart guide walks you through the steps to configure the Amazon Data Processing MCP Server for use with both the <a href="https://www.cursor.com/en/downloads">Cursor</a> IDE and the <a href="https://github.com/aws/amazon-q-developer-cli">Amazon Q Developer CLI</a>. By following these steps, you'll setup your development environment to leverage the Data Processing MCP Server's tools for managing your Glue, EMR and Athena resources.</p>
+<p><strong>Set up Cursor</strong></p>
+<ol>
+<li>Open Cursor.</li>
+<li>Click the gear icon (⚙️) in the top right to open the settings panel, click <strong>MCP</strong>, <strong>Add new global MCP server</strong>.</li>
+<li>Paste your MCP server definition. For example, this example shows how to configure the Data Processing MCP Server, including enabling mutating actions by adding the <code>--allow-write</code> flag to the server arguments:</li>
+</ol>
+<p><div class="highlight"><pre><span></span><code>{
+  &quot;mcpServers&quot;: {
+    &quot;aws.aws-dataprocessing-mcp-server&quot;: {
+      &quot;autoApprove&quot;: [],
+      &quot;disabled&quot;: false,
+      &quot;command&quot;: &quot;uvx&quot;,
+      &quot;args&quot;: [
+        &quot;aws.aws-dataprocessing-mcp-server@latest&quot;,
+        &quot;--allow-write&quot;
+      ],
+      &quot;env&quot;: {
+        &quot;FASTMCP_LOG_LEVEL&quot;: &quot;ERROR&quot;,
+        &quot;AWS_REGION&quot;: &quot;us-east-1&quot;
+      },
+      &quot;transportType&quot;: &quot;stdio&quot;
+    }
+  }
+}
+</code></pre></div>
+After a few minutes, you should see a green indicator if your MCP server definition is valid.</p>
+<ol>
+<li>Open a chat panel in Cursor (e.g., <code>Ctrl/⌘ + L</code>).  In your Cursor chat window, enter your prompt. For example, "Look at all the tables from my account federated across GDC"</li>
+</ol>
+<p><strong>Set up the Amazon Q Developer CLI</strong></p>
+<ol>
+<li>Install the <a href="https://docs.aws.amazon.com/amazonq/latest/qdeveloper-ug/command-line-installing.html">Amazon Q Developer CLI</a> .</li>
+<li>The Q Developer CLI supports MCP servers for tools and prompts out-of-the-box. Edit your Q developer CLI's MCP configuration file named mcp.json following <a href="https://docs.aws.amazon.com/amazonq/latest/qdeveloper-ug/command-line-mcp-configuration.html">these instructions</a>. For example:</li>
+</ol>
+<div class="highlight"><pre><span></span><code>{
+  &quot;mcpServers&quot;: {
+    &quot;aws.aws-dataprocessing-mcp-server&quot;: {
+      &quot;command&quot;: &quot;uvx&quot;,
+      &quot;args&quot;: [&quot;aws.aws-dataprocessing-mcp-server@latest&quot;],
+      &quot;env&quot;: {
+        &quot;FASTMCP_LOG_LEVEL&quot;: &quot;ERROR&quot;
+      },
+      &quot;autoApprove&quot;: [],
+      &quot;disabled&quot;: false
+    }
+  }
+}
+</code></pre></div>
+<ol>
+<li>Verify your setup by running the <code>/tools</code> command in the Q Developer CLI to see the available Data Processing MCP tools.</li>
+</ol>
+<p>Note that this is a basic quickstart. You can enable additional capabilities, such as <a href="https://github.com/awslabs/mcp?tab=readme-ov-file#running-mcp-servers-in-containers">running MCP servers in containers</a> or combining more MCP servers like the <a href="https://awslabs.github.io/mcp/servers/aws-documentation-mcp-server/">AWS Documentation MCP Server</a> into a single MCP server definition. To view an example, see the <a href="https://github.com/awslabs/mcp?tab=readme-ov-file#installation-and-setup">Installation and Setup</a> guide in AWS MCP Servers on GitHub. To view a real-world implementation with application code in context with an MCP server, see the <a href="https://modelcontextprotocol.io/quickstart/server">Server Developer</a> guide in Anthropic documentation.</p>
+<h2 id="configurations">Configurations</h2>
+<h3 id="arguments">Arguments</h3>
+<p>The <code>args</code> field in the MCP server definition specifies the command-line arguments passed to the server when it starts. These arguments control how the server is executed and configured. For example:</p>
+<div class="highlight"><pre><span></span><code>{
+  &quot;mcpServers&quot;: {
+    &quot;awslabs.aws-dataprocessing-mcp-server&quot;: {
+      &quot;command&quot;: &quot;uvx&quot;,
+      &quot;args&quot;: [
+        &quot;aws.aws-dataprocessing-mcp-server@latest&quot;,
+        &quot;--allow-write&quot;,
+        &quot;--allow-sensitive-data-access&quot;
+      ],
+      &quot;env&quot;: {
+        &quot;AWS_PROFILE&quot;: &quot;your-profile&quot;,
+        &quot;AWS_REGION&quot;: &quot;us-east-1&quot;
+      }
+    }
+  }
+}
+</code></pre></div>
+<h4 id="awslabsaws-dataprocessing-mcp-serverlatest-required"><code>awslabs.aws-dataprocessing-mcp-server@latest</code> (required)</h4>
+<p>Specifies the latest package/version specifier for the MCP client config.</p>
+<ul>
+<li>Enables MCP server startup and tool registration.</li>
+</ul>
+<h4 id="-allow-write-optional"><code>--allow-write</code> (optional)</h4>
+<p>Enables write access mode, which allows mutating operations (e.g., create, update, delete resources)</p>
+<ul>
+<li>Default: false (The server runs in read-only mode by default)</li>
+<li>Example: Add <code>--allow-write</code> to the <code>args</code> list in your MCP server definition.</li>
+</ul>
+<h4 id="-allow-sensitive-data-access-optional"><code>--allow-sensitive-data-access</code> (optional)</h4>
+<p>Enables access to sensitive data such as logs, events, and Kubernetes Secrets.</p>
+<ul>
+<li>Default: false (Access to sensitive data is restricted by default)</li>
+<li>Example: Add <code>--allow-sensitive-data-access</code> to the <code>args</code> list in your MCP server definition.</li>
+</ul>
+<h3 id="environment-variables">Environment variables</h3>
+<p>The <code>env</code> field in the MCP server definition allows you to configure environment variables that control the behavior of the DataProcessing MCP server.  For example:</p>
+<div class="highlight"><pre><span></span><code>{
+  &quot;mcpServers&quot;: {
+    &quot;awslabs.aws-dataprocessing-mcp-server&quot;: {
+      &quot;env&quot;: {
+        &quot;FASTMCP_LOG_LEVEL&quot;: &quot;ERROR&quot;,
+        &quot;AWS_PROFILE&quot;: &quot;my-profile&quot;,
+        &quot;AWS_REGION&quot;: &quot;us-west-2&quot;
+      }
+    }
+  }
+}
+</code></pre></div>
+<h4 id="fastmcp_log_level-optional"><code>FASTMCP_LOG_LEVEL</code> (optional)</h4>
+<p>Sets the logging level verbosity for the server.</p>
+<ul>
+<li>Valid values: "DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"</li>
+<li>Default: "WARNING"</li>
+<li>Example: <code>"FASTMCP_LOG_LEVEL": "ERROR"</code></li>
+</ul>
+<h4 id="aws_profile-optional"><code>AWS_PROFILE</code> (optional)</h4>
+<p>Specifies the AWS profile to use for authentication.</p>
+<ul>
+<li>Default: None (If not set, uses default AWS credentials).</li>
+<li>Example: <code>"AWS_PROFILE": "my-profile"</code></li>
+</ul>
+<h4 id="aws_region-optional"><code>AWS_REGION</code> (optional)</h4>
+<p>Specifies the AWS region where Glue,EMR clusters or Athena are managed, which will be used for all AWS service operations.</p>
+<ul>
+<li>Default: None (If not set, uses default AWS region).</li>
+<li>Example: <code>"AWS_REGION": "us-west-2"</code></li>
+</ul>
+<h2 id="tools">Tools</h2>
+<h3 id="glue-data-catalog-handler-tools">Glue Data Catalog Handler Tools</h3>
+<table>
+<thead>
+<tr>
+<th>Tool Name</th>
+<th>Description</th>
+<th>Key Operations</th>
+<th>Requirements</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>manage_aws_glue_databases</td>
+<td>Manage AWS Glue Data Catalog databases</td>
+<td>create-database, delete-database, get-database, list-databases, update-database</td>
+<td>--allow-write flag for create/delete/update operations, appropriate AWS permissions</td>
+</tr>
+<tr>
+<td>manage_aws_glue_tables</td>
+<td>Manage AWS Glue Data Catalog tables</td>
+<td>create-table, delete-table, get-table, list-tables, update-table, search-tables</td>
+<td>--allow-write flag for create/delete/update operations, database must exist, appropriate AWS permissions</td>
+</tr>
+<tr>
+<td>manage_aws_glue_connections</td>
+<td>Manage AWS Glue Data Catalog connections</td>
+<td>create-connection, delete-connection, get-connection, list-connections, update-connection</td>
+<td>--allow-write flag for create/delete/update operations, appropriate AWS permissions</td>
+</tr>
+<tr>
+<td>manage_aws_glue_partitions</td>
+<td>Manage AWS Glue Data Catalog partitions</td>
+<td>create-partition, delete-partition, get-partition, list-partitions, update-partition</td>
+<td>--allow-write flag for create/delete/update operations, database and table must exist, appropriate AWS permissions</td>
+</tr>
+<tr>
+<td>manage_aws_glue_catalog</td>
+<td>Manage AWS Glue Data Catalog</td>
+<td>create-catalog, delete-catalog, get-catalog, list-catalogs, import-catalog-to-glue</td>
+<td>--allow-write flag for create/delete/import operations, appropriate AWS permissions</td>
+</tr>
+</tbody>
+</table>
+<h3 id="glue-interactive-sessions-handler-tools">Glue Interactive Sessions Handler Tools</h3>
+<table>
+<thead>
+<tr>
+<th>Tool Name</th>
+<th>Description</th>
+<th>Key Operations</th>
+<th>Requirements</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>manage_aws_glue_sessions</td>
+<td>Manage AWS Glue Interactive Sessions for Spark and Ray workloads</td>
+<td>create-session, delete-session, get-session, list-sessions, stop-session</td>
+<td>--allow-write flag for create/delete/stop operations, appropriate AWS permissions</td>
+</tr>
+<tr>
+<td>manage_aws_glue_statements</td>
+<td>Execute and manage code statements within Glue Interactive Sessions</td>
+<td>run-statement, cancel-statement, get-statement, list-statements</td>
+<td>--allow-write flag for run/cancel operations, active session required</td>
+</tr>
+</tbody>
+</table>
+<h3 id="glue-workflows-and-triggers-handler-tools">Glue Workflows and Triggers Handler Tools</h3>
+<table>
+<thead>
+<tr>
+<th>Tool Name</th>
+<th>Description</th>
+<th>Key Operations</th>
+<th>Requirements</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>manage_aws_glue_workflows</td>
+<td>Orchestrate complex ETL activities through visual workflows</td>
+<td>create-workflow, delete-workflow, get-workflow, list-workflows, start-workflow-run</td>
+<td>--allow-write flag for create/delete/start operations, appropriate AWS permissions</td>
+</tr>
+<tr>
+<td>manage_aws_glue_triggers</td>
+<td>Automate workflow and job execution with scheduled or event-based triggers</td>
+<td>create-trigger, delete-trigger, get-trigger, get-triggers, start-trigger, stop-trigger</td>
+<td>--allow-write flag for create/delete/start/stop operations, appropriate AWS permissions</td>
+</tr>
+</tbody>
+</table>
+<h3 id="emr-cluster-handler-tools">EMR Cluster Handler Tools</h3>
+<table>
+<thead>
+<tr>
+<th>Tool Name</th>
+<th>Description</th>
+<th>Key Operations</th>
+<th>Requirements</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>manage_aws_emr_clusters</td>
+<td>Manage Amazon EMR clusters with comprehensive control over cluster lifecycle</td>
+<td>create-cluster, describe-cluster, modify-cluster, modify-cluster-attributes, terminate-clusters, list-clusters, create-security-configuration, delete-security-configuration, describe-security-configuration, list-security-configurations</td>
+<td>--allow-write flag for create/modify/terminate operations, appropriate AWS permissions</td>
+</tr>
+</tbody>
+</table>
+<h3 id="emr-instance-handler-tools">EMR Instance Handler Tools</h3>
+<table>
+<thead>
+<tr>
+<th>Tool Name</th>
+<th>Description</th>
+<th>Key Operations</th>
+<th>Requirements</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>manage_aws_emr_ec2_instances</td>
+<td>Manage Amazon EMR EC2 instances with both read and write operations</td>
+<td>add-instance-fleet, add-instance-groups, modify-instance-fleet, modify-instance-groups, list-instance-fleets, list-instances, list-supported-instance-types</td>
+<td>--allow-write flag for add/modify operations, appropriate AWS permissions</td>
+</tr>
+</tbody>
+</table>
+<h3 id="emr-steps-handler-tools">EMR Steps Handler Tools</h3>
+<table>
+<thead>
+<tr>
+<th>Tool Name</th>
+<th>Description</th>
+<th>Key Operations</th>
+<th>Requirements</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>manage_aws_emr_ec2_steps</td>
+<td>Manage Amazon EMR steps for processing data on EMR clusters</td>
+<td>add-steps, cancel-steps, describe-step, list-steps</td>
+<td>--allow-write flag for add/cancel operations, appropriate AWS permissions</td>
+</tr>
+</tbody>
+</table>
+<h3 id="athena-query-handler-tools">Athena Query Handler Tools</h3>
+<table>
+<thead>
+<tr>
+<th>Tool Name</th>
+<th>Description</th>
+<th>Key Operations</th>
+<th>Requirements</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>manage_aws_athena_query_executions</td>
+<td>Execute and manage AWS Athena SQL queries</td>
+<td>batch-get-query-execution, get-query-execution, get-query-results, get-query-runtime-statistics, list-query-executions, start-query-execution, stop-query-execution</td>
+<td>--allow-write flag for start/stop operations, appropriate AWS permissions</td>
+</tr>
+<tr>
+<td>manage_aws_athena_named_queries</td>
+<td>Manage saved SQL queries in AWS Athena</td>
+<td>batch-get-named-query, create-named-query, delete-named-query, get-named-query, list-named-queries, update-named-query</td>
+<td>--allow-write flag for create/delete/update operations, appropriate AWS permissions</td>
+</tr>
+</tbody>
+</table>
+<h3 id="athena-data-catalog-handler-tools">Athena Data Catalog Handler Tools</h3>
+<table>
+<thead>
+<tr>
+<th>Tool Name</th>
+<th>Description</th>
+<th>Key Operations</th>
+<th>Requirements</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>manage_aws_athena_data_catalogs</td>
+<td>Manage AWS Athena data catalogs</td>
+<td>create-data-catalog, delete-data-catalog, get-data-catalog, list-data-catalogs, update-data-catalog</td>
+<td>--allow-write flag for create/delete/update operations, appropriate AWS permissions</td>
+</tr>
+<tr>
+<td>manage_aws_athena_databases_and_tables</td>
+<td>Manage AWS Athena databases and tables</td>
+<td>get-database, get-table-metadata, list-databases, list-table-metadata</td>
+<td>Appropriate AWS permissions for Athena database operations</td>
+</tr>
+</tbody>
+</table>
+<h3 id="athena-workgroup-handler-tools">Athena WorkGroup Handler Tools</h3>
+<table>
+<thead>
+<tr>
+<th>Tool Name</th>
+<th>Description</th>
+<th>Key Operations</th>
+<th>Requirements</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>manage_aws_athena_workgroups</td>
+<td>Manage AWS Athena workgroups</td>
+<td>create-work-group, delete-work-group, get-work-group, list-work-groups, update-work-group</td>
+<td>--allow-write flag for create/delete/update operations, appropriate AWS permissions</td>
+</tr>
+</tbody>
+</table>
+<h3 id="glue-commons-handler-tools">Glue Commons Handler Tools</h3>
+<table>
+<thead>
+<tr>
+<th>Tool Name</th>
+<th>Description</th>
+<th>Key Operations</th>
+<th>Requirements</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>manage_aws_glue_usage_profiles</td>
+<td>Manage AWS Glue Usage Profiles for resource allocation and cost management</td>
+<td>create-profile, delete-profile, get-profile, update-profile</td>
+<td>--allow-write flag for create/delete/update operations, appropriate AWS permissions</td>
+</tr>
+<tr>
+<td>manage_aws_glue_security_configurations</td>
+<td>Manage AWS Glue Security Configurations for data encryption</td>
+<td>create-security-configuration, delete-security-configuration, get-security-configuration</td>
+<td>--allow-write flag for create/delete operations, appropriate AWS permissions</td>
+</tr>
+<tr>
+<td>manage_aws_glue_encryption</td>
+<td>Manage AWS Glue catalog encryption settings</td>
+<td>get-catalog-encryption-settings, put-catalog-encryption-settings</td>
+<td>--allow-write flag for put operations, appropriate AWS permissions</td>
+</tr>
+<tr>
+<td>manage_aws_glue_resource_policies</td>
+<td>Manage resource policies for AWS Glue catalogs, databases and tables</td>
+<td>get-resource-policy, put-resource-policy, delete-resource-policy</td>
+<td>--allow-write flag for put/delete operations, appropriate AWS permissions</td>
+</tr>
+</tbody>
+</table>
+<h3 id="glue-etl-handler-tools">Glue ETL Handler Tools</h3>
+<table>
+<thead>
+<tr>
+<th>Tool Name</th>
+<th>Description</th>
+<th>Key Operations</th>
+<th>Requirements</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>manage_aws_glue_jobs</td>
+<td>Manage AWS Glue ETL jobs and job runs</td>
+<td>create-job, delete-job, get-job, get-jobs, update-job, start-job-run, stop-job-run, get-job-run, get-job-runs, batch-stop-job-run, get-job-bookmark, reset-job-bookmark</td>
+<td>--allow-write flag for create/delete/update/start/stop operations, appropriate AWS permissions</td>
+</tr>
+</tbody>
+</table>
+<h3 id="glue-crawler-handler-tools">Glue Crawler Handler Tools</h3>
+<table>
+<thead>
+<tr>
+<th>Tool Name</th>
+<th>Description</th>
+<th>Key Operations</th>
+<th>Requirements</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>manage_aws_glue_crawlers</td>
+<td>Manage AWS Glue crawlers to discover and catalog data sources</td>
+<td>create-crawler, delete-crawler, get-crawler, get-crawlers, start-crawler, stop-crawler, batch-get-crawlers, list-crawlers, update-crawler</td>
+<td>--allow-write flag for create/delete/start/stop/update operations, appropriate AWS permissions</td>
+</tr>
+<tr>
+<td>manage_aws_glue_classifiers</td>
+<td>Manage AWS Glue classifiers to determine data formats and schemas</td>
+<td>create-classifier, delete-classifier, get-classifier, get-classifiers, update-classifier</td>
+<td>--allow-write flag for create/delete/update operations, appropriate AWS permissions</td>
+</tr>
+<tr>
+<td>manage_aws_glue_crawler_management</td>
+<td>Manage AWS Glue crawler schedules and monitor performance metrics</td>
+<td>get-crawler-metrics, start-crawler-schedule, stop-crawler-schedule, update-crawler-schedule</td>
+<td>--allow-write flag for schedule operations, appropriate AWS permissions</td>
+</tr>
+</tbody>
+</table>
+<h2 id="version">Version</h2>
+<p>Current MCP server version: 0.1.0</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; Amazon Web Services, Inc. or its affiliates. All rights reserved.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["search.suggest", "search.highlight", "navigation.instant"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+    
+  </body>
+</html>
