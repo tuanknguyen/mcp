@@ -15,11 +15,15 @@
 
 import httpx
 import json
+import os
 import re
 import uuid
+from pathlib import Path
 
 # Import models
+from awslabs.aws_documentation_mcp_server.constants import PREFERENCES_FILE
 from awslabs.aws_documentation_mcp_server.models import (
+    AWSPreferences,
     RecommendationResult,
     SearchResult,
 )
@@ -30,7 +34,9 @@ from awslabs.aws_documentation_mcp_server.server_utils import (
 
 # Import utility functions
 from awslabs.aws_documentation_mcp_server.util import (
+    load_preferences_from_file,
     parse_recommendation_results,
+    save_preferences,
 )
 from loguru import logger
 from mcp.server.fastmcp import Context, FastMCP
@@ -143,7 +149,42 @@ async def read_documentation(
     return await read_documentation_impl(ctx, url_str, max_length, start_index, SESSION_UUID)
 
 
-@mcp.tool()
+SEARCH_DOCUMENTATION_DESCRIPTION = """Search AWS documentation using the official AWS Documentation Search API.
+
+## Usage
+
+This tool searches across all AWS documentation for pages matching your search phrase.
+Use it to find relevant documentation when you don't have a specific URL.
+
+Whenever there is a new fact about AWS or the current use case, update AWS preferences to customize documentation experience.
+Only update preference fields as needed. Only include information relevant to AWS or techincal consideration.
+
+## Search Tips
+
+- Use specific technical terms rather than general phrases
+- Include service names to narrow results (e.g., "S3 bucket versioning" instead of just "versioning")
+- Use quotes for exact phrase matching (e.g., "AWS Lambda function URLs")
+- Include abbreviations and alternative terms to improve results
+
+## Result Interpretation
+
+Each result includes:
+- rank_order: The relevance ranking (lower is more relevant)
+- url: The documentation page URL
+- title: The page title
+- context: A brief excerpt or summary (if available)
+
+Args:
+    ctx: MCP context for logging and error handling
+    search_phrase: Search phrase to use
+    limit: Maximum number of results to return
+    preferences: AWS preferences to customize documentation experience
+
+Returns:
+    List of search results with URLs, titles, and context snippets"""
+
+
+@mcp.tool(description=SEARCH_DOCUMENTATION_DESCRIPTION + str(load_preferences_from_file()))
 async def search_documentation(
     ctx: Context,
     search_phrase: str = Field(description='Search phrase to use'),
@@ -153,38 +194,16 @@ async def search_documentation(
         ge=1,
         le=50,
     ),
+    preferences: AWSPreferences = Field(
+        default=None,
+        description='AWS preferences to customize documentation experience'
+    ),
 ) -> List[SearchResult]:
-    """Search AWS documentation using the official AWS Documentation Search API.
-
-    ## Usage
-
-    This tool searches across all AWS documentation for pages matching your search phrase.
-    Use it to find relevant documentation when you don't have a specific URL.
-
-    ## Search Tips
-
-    - Use specific technical terms rather than general phrases
-    - Include service names to narrow results (e.g., "S3 bucket versioning" instead of just "versioning")
-    - Use quotes for exact phrase matching (e.g., "AWS Lambda function URLs")
-    - Include abbreviations and alternative terms to improve results
-
-    ## Result Interpretation
-
-    Each result includes:
-    - rank_order: The relevance ranking (lower is more relevant)
-    - url: The documentation page URL
-    - title: The page title
-    - context: A brief excerpt or summary (if available)
-
-    Args:
-        ctx: MCP context for logging and error handling
-        search_phrase: Search phrase to use
-        limit: Maximum number of results to return
-
-    Returns:
-        List of search results with URLs, titles, and context snippets
-    """
     logger.debug(f'Searching AWS documentation for: {search_phrase}')
+
+    # Save preferences if provided
+    if preferences:
+        save_preferences(preferences.model_dump(exclude_none=True))
 
     request_body = {
         'textQuery': {
@@ -366,6 +385,12 @@ async def recommend(
     results = parse_recommendation_results(data)
     logger.debug(f'Found {len(results)} recommendations for: {url_str}')
     return results
+
+
+@mcp.tool()
+async def load_preferences(ctx: Context) -> dict:
+    """Load current AWS preferences."""
+    return load_preferences_from_file()
 
 
 def main():

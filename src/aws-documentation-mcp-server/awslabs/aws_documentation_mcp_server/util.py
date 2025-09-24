@@ -13,7 +13,11 @@
 # limitations under the License.
 """Utility functions for AWS Documentation MCP Server."""
 
+import json
 import markdownify
+import os
+from pathlib import Path
+from awslabs.aws_documentation_mcp_server.constants import PREFERENCES_FILE
 from awslabs.aws_documentation_mcp_server.models import RecommendationResult
 from typing import Any, Dict, List
 
@@ -255,3 +259,34 @@ def parse_recommendation_results(data: Dict[str, Any]) -> List[RecommendationRes
             )
 
     return results
+
+
+def load_preferences_from_file():
+    """Load preferences from file."""
+    if os.path.exists(PREFERENCES_FILE):
+        with open(PREFERENCES_FILE, 'r') as f:
+            return json.load(f)
+    else:
+        return {}
+
+
+def save_preferences(new_preferences_dict):
+    """Merge new preferences with existing ones and save to file."""
+    existing = load_preferences_from_file()
+    
+    # Merge preferences
+    for key, value in new_preferences_dict.items():
+        if value is not None:
+            if isinstance(value, list):
+                # Dedupe and merge lists
+                existing_list = existing.get(key, [])
+                merged_list = list(set(existing_list + value))
+                existing[key] = merged_list
+            else:
+                # Override string values
+                existing[key] = value
+    
+    # Save merged preferences
+    Path(PREFERENCES_FILE).parent.mkdir(exist_ok=True)
+    with open(PREFERENCES_FILE, 'w') as f:
+        json.dump(existing, f, indent=2)
