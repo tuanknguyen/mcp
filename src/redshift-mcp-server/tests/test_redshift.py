@@ -1104,7 +1104,9 @@ class TestDiscoverFunctions:
         ]
         mock_serverless_client.get_workgroup.return_value = {
             'workgroup': {
-                'configParameters': [{'parameterValue': 'analytics'}],
+                'configParameters': [
+                    {'parameterKey': 'default_database', 'parameterValue': 'analytics'}
+                ],
                 'endpoint': {'address': 'test.serverless.amazonaws.com', 'port': 5439},
                 'subnetIds': ['subnet-123'],
                 'publiclyAccessible': True,
@@ -1136,6 +1138,46 @@ class TestDiscoverFunctions:
         assert workgroup['number_of_nodes'] is None
         assert workgroup['encrypted'] is True
         assert workgroup['tags'] == {'team': 'data'}
+
+    @pytest.mark.asyncio
+    async def test_discover_clusters_serverless_empty_subnet_ids(self, mocker):
+        """Serverless workgroup with an empty subnetIds list must not raise (vpc_id=None)."""
+        mock_redshift_client = mocker.Mock()
+        mock_redshift_client.get_paginator.return_value.paginate.return_value = [{'Clusters': []}]
+
+        mock_serverless_client = mocker.Mock()
+        mock_serverless_client.get_paginator.return_value.paginate.return_value = [
+            {
+                'workgroups': [
+                    {
+                        'workgroupName': 'test-workgroup',
+                        'status': 'AVAILABLE',
+                        'creationDate': '2024-01-01T00:00:00Z',
+                    }
+                ]
+            }
+        ]
+        mock_serverless_client.get_workgroup.return_value = {
+            'workgroup': {
+                'configParameters': [],
+                'endpoint': {'address': 'test.serverless.amazonaws.com', 'port': 5439},
+                'subnetIds': [],  # present but empty - previously caused IndexError
+            }
+        }
+
+        mocker.patch(
+            'awslabs.redshift_mcp_server.redshift.client_manager.redshift_client',
+            return_value=mock_redshift_client,
+        )
+        mocker.patch(
+            'awslabs.redshift_mcp_server.redshift.client_manager.redshift_serverless_client',
+            return_value=mock_serverless_client,
+        )
+
+        result = await discover_clusters()
+
+        assert len(result) == 1
+        assert result[0]['vpc_id'] is None
 
     @pytest.mark.asyncio
     async def test_discover_clusters_serverless_error(self, mocker):
